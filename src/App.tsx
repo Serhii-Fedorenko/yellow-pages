@@ -1,33 +1,21 @@
-import { FormEvent } from "react";
-import { useDispatch } from "react-redux";
-import { register } from "./redux/auth/operations";
-import { AppDispatch } from "./redux/store";
+import { Route, Routes } from "react-router-dom";
+import Layout from "./Components/Layout";
+import Contacts from "./Pages/Contacts";
+import Home from "./Pages/Home";
+import LogIn from "./Pages/LogIn";
+import SignIn from "./Pages/SignIn";
 
 function App() {
-  const dispatch = useDispatch<AppDispatch>();
-
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const form = e.currentTarget;
-    const email = (form.elements.namedItem("email") as HTMLInputElement).value;
-    const password = (form.elements.namedItem("password") as HTMLInputElement)
-      .value;
-
-    dispatch(
-      register({
-        email,
-        password,
-      })
-    );
-    form.reset();
-  };
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <input type="email" name="email" />
-        <input type="password" name="password" />
-        <button type="submit">Sign In</button>
-      </form>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="/contacts" element={<Contacts />} />
+          <Route path="/login" element={<LogIn />} />
+          <Route path="/register" element={<SignIn />} />
+        </Route>
+      </Routes>
     </div>
   );
 }
