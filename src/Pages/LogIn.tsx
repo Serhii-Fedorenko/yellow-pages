@@ -1,7 +1,7 @@
 import { FormEvent } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { login } from "../redux/auth/operations";
-import { AppDispatch } from "../redux/store";
+import { AppDispatch, RootState } from "../redux/store";
 
 const LogIn = () => {
   const dispatch = useDispatch<AppDispatch>();

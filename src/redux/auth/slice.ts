@@ -2,8 +2,9 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { login, register } from "./operations";
 
 interface User {
-  password: string;
   email: string;
+  subscription: string;
+  avatarURL: string;
 }
 
 interface UserState {
@@ -19,7 +20,7 @@ interface RegisterPayload {
 }
 
 const initialState: UserState = {
-  user: { password: "", email: "" },
+  user: { email: "", subscription: "", avatarURL: "" },
   token: "",
   isLoggedIn: false,
   isRefreshing: false,
@@ -34,6 +35,7 @@ const authSlice = createSlice({
       .addCase(
         register.fulfilled,
         (state, action: PayloadAction<RegisterPayload>) => {
+          console.log(action.payload);
           state.user = action.payload.user;
         }
       )
