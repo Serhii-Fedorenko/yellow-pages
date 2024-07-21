@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { register } from "./operations";
+import { login, register } from "./operations";
 
 interface User {
   password: string;
@@ -14,8 +14,8 @@ interface UserState {
 }
 
 interface RegisterPayload {
-    user: User;
-    token: string
+  user: User;
+  token: string;
 }
 
 const initialState: UserState = {
@@ -30,10 +30,22 @@ const authSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(register.fulfilled, (state, action: PayloadAction<RegisterPayload>) => {
-        state.user = action.payload.user;
-    })
+    builder
+      .addCase(
+        register.fulfilled,
+        (state, action: PayloadAction<RegisterPayload>) => {
+          state.user = action.payload.user;
+        }
+      )
+      .addCase(
+        login.fulfilled,
+        (state, action: PayloadAction<RegisterPayload>) => {
+          state.user = action.payload.user;
+          state.token = action.payload.token;
+          state.isLoggedIn = true;
+        }
+      );
   },
 });
 
-export const authReducer = authSlice.reducer
+export const authReducer = authSlice.reducer;
