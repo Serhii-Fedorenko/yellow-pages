@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { login, logout, register } from "./operations";
+import { login, logout, refreshUser, register } from "./operations";
 
 interface User {
   email: string;
@@ -51,6 +51,20 @@ const authSlice = createSlice({
         state.user = { email: "", subscription: "", avatarURL: "" };
         state.token = "";
         state.isLoggedIn = false;
+      })
+      .addCase(refreshUser.pending, (state) => {
+        state.isRefreshing = true;
+      })
+      .addCase(
+        refreshUser.fulfilled,
+        (state, action: PayloadAction<RegisterPayload>) => {
+          state.user = action.payload.user;
+          state.isLoggedIn = true;
+          state.isRefreshing = false;
+        }
+      )
+      .addCase(refreshUser.rejected, (state) => {
+        state.isRefreshing = false;
       });
   },
 });
