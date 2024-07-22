@@ -40,3 +40,12 @@ export const login = createAsyncThunk(
     }
   }
 );
+
+export const logout = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
+  try {
+    await axios.post("/users/logout");
+    clearAuthHeader();
+  } catch (e: any) {
+    return thunkAPI.rejectWithValue(e.message);
+  }
+});

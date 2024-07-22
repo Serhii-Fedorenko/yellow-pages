@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { login, register } from "./operations";
+import { login, logout, register } from "./operations";
 
 interface User {
   email: string;
@@ -46,7 +46,12 @@ const authSlice = createSlice({
           state.token = action.payload.token;
           state.isLoggedIn = true;
         }
-      );
+      )
+      .addCase(logout.fulfilled, (state) => {
+        state.user = { email: "", subscription: "", avatarURL: "" };
+        state.token = "";
+        state.isLoggedIn = false;
+      });
   },
 });
 

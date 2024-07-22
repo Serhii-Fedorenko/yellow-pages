@@ -1,10 +1,12 @@
 import { FormEvent } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { login } from "../redux/auth/operations";
+import { useAuth } from "../hooks/useAuth";
+import { login, logout } from "../redux/auth/operations";
 import { AppDispatch, RootState } from "../redux/store";
 
 const LogIn = () => {
   const dispatch = useDispatch<AppDispatch>();
+  const { isLoggedIn } = useAuth();
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -28,6 +30,11 @@ const LogIn = () => {
         <input type="password" name="password" />
         <button type="submit">Log In</button>
       </form>
+      {isLoggedIn && (
+        <button type="button" onClick={() => dispatch(logout())}>
+          Log out
+        </button>
+      )}
     </div>
   );
 };
