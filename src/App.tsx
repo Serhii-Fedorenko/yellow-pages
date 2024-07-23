@@ -29,7 +29,7 @@ function App() {
         <Route
           path="/contacts"
           element={
-            <PrivateRoute component={<Contacts />} redirectTo="/users/login" />
+            <PrivateRoute component={<Contacts />} redirectTo="/login" />
           }
         />
         <Route

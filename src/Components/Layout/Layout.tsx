@@ -14,20 +14,14 @@ const Layout = () => {
         <nav>
           <NavLink to="/">Home</NavLink>
 
-          {isLoggedIn && <NavLink to="/contacts">Contacts</NavLink>}
+          <NavLink to="/contacts">Contacts</NavLink>
 
-          {!isLoggedIn && (
-            <>
-              <NavLink to="/login">Log In</NavLink>
-              <NavLink to="/register">Sign In</NavLink>
-            </>
-          )}
+          <NavLink to="/login">Log In</NavLink>
+          <NavLink to="/register">Sign In</NavLink>
 
-          {isLoggedIn && (
-            <button type="button" onClick={() => dispatch(logout())}>
-              Log out
-            </button>
-          )}
+          <button type="button" onClick={() => dispatch(logout())}>
+            Log out
+          </button>
         </nav>
       </header>
       <Suspense>
