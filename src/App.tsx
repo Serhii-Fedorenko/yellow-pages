@@ -1,7 +1,9 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Routes } from "react-router-dom";
-import Layout from "./Components/Layout";
+import Layout from "./Components/Layout/Layout";
+import PrivateRoute from "./Components/Routes/PrivateRoute";
+import RestrictedRoute from "./Components/Routes/RestrictedRoute";
 import { useAuth } from "./hooks/useAuth";
 import Contacts from "./Pages/Contacts";
 import Home from "./Pages/Home";
@@ -18,17 +20,32 @@ function App() {
     dispatch(refreshUser());
   }, [dispatch]);
 
-  return (
-    <div>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path="/contacts" element={<Contacts />} />
-          <Route path="/login" element={<LogIn />} />
-          <Route path="/register" element={<SignIn />} />
-        </Route>
-      </Routes>
-    </div>
+  return isRefreshing ? (
+    <b>Refrech user...</b>
+  ) : (
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Home />} />
+        <Route
+          path="/contacts"
+          element={
+            <PrivateRoute component={<Contacts />} redirectTo="/users/login" />
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <RestrictedRoute component={<LogIn />} redirectTo="/contacts" />
+          }
+        />
+        <Route
+          path="/register"
+          element={
+            <RestrictedRoute component={<SignIn />} redirectTo="/contacts" />
+          }
+        />
+      </Route>
+    </Routes>
   );
 }
 
