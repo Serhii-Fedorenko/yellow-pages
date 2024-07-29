@@ -7,11 +7,12 @@ interface Contact {
   favorite: boolean;
 }
 
-const initialState: Contact = {
-  name: "",
-  email: "",
-  phone: "",
-  favorite: false,
+interface Contacts {
+    items: Contact[]
+}
+
+const initialState: Contacts = {
+  items: []
 };
 
 const contactsSlice = createSlice({
