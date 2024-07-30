@@ -7,7 +7,7 @@ interface User {
   avatarURL: string;
 }
 
-interface UserState {
+export interface UserState {
   user: User;
   token: string;
   isLoggedIn: boolean;

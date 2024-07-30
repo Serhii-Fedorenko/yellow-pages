@@ -1,0 +1,1 @@
+1. contactsSlice > fetchContacts.rejected виправити типізацію action
