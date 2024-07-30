@@ -1,11 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { fetchContacts } from "./operations";
+import { addContact, fetchContacts } from "./operations";
 
 interface Contact {
   name: string;
   email: string;
   phone: string;
-  favorite: boolean;
+  favorite?: boolean;
 }
 
 interface ContactsState {
@@ -34,16 +34,28 @@ const contactsSlice = createSlice({
         (state, action: PayloadAction<Contact[]>) => {
           state.isLoading = false;
           state.error = "";
-          state.items = action.payload
+          state.items = action.payload;
         }
       )
+      .addCase(fetchContacts.rejected, (state, action: any) => {
+        state.isLoading = false;
+        state.error = action.payload || "Something went wrong";
+      })
+      .addCase(addContact.pending, (state) => {
+        state.isLoading = true;
+      })
       .addCase(
-        fetchContacts.rejected,
-        (state, action: any) => {
+        addContact.fulfilled,
+        (state, action: PayloadAction<Contact>) => {
           state.isLoading = false;
-          state.error = action.payload || "Something went wrong";
+          state.error = "";
+          state.items.push(action.payload);
         }
-      );
+      )
+      .addCase(addContact.rejected, (state, action: any) => {
+        state.isLoading = false;
+        state.error = action.payload || "Something went wrong";
+      });
   },
 });
 
