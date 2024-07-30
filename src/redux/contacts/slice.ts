@@ -1,17 +1,22 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { addContact, fetchContacts } from "./operations";
+import { addContact, deleteContact, fetchContacts } from "./operations";
 
 interface Contact {
   name: string;
   email: string;
   phone: string;
   favorite?: boolean;
+  _id: string;
 }
 
 interface ContactsState {
   items: Contact[];
   isLoading: boolean;
   error: string | null;
+}
+
+interface DeleteContactPayload {
+  id: string;
 }
 
 const initialState: ContactsState = {
@@ -55,6 +60,23 @@ const contactsSlice = createSlice({
       .addCase(addContact.rejected, (state, action: any) => {
         state.isLoading = false;
         state.error = action.payload || "Something went wrong";
+      })
+      .addCase(deleteContact.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(
+        deleteContact.fulfilled,
+        (state, action: PayloadAction<DeleteContactPayload>) => {
+          state.isLoading = false;
+          state.error = "";
+          state.items = state.items.filter(
+            (item) => item._id !== action.payload.id
+          );
+        }
+      )
+      .addCase(deleteContact.rejected, (state, action: any) => {
+        state.isLoading = false;
+        state.error = action.payload;
       });
   },
 });

@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addContact, fetchContacts } from "../redux/contacts/operations";
+import { addContact, deleteContact, fetchContacts } from "../redux/contacts/operations";
 import { AppDispatch, RootState } from "../redux/store";
 
 const Contacts = () => {
@@ -21,6 +21,8 @@ const Contacts = () => {
     form.reset();
   };
 
+  const handleDelete = (id: string) => {dispatch(deleteContact(id))}
+
   return (
     <>
       <div>Contacts</div>
@@ -32,10 +34,11 @@ const Contacts = () => {
       </form>
       <ul>
         {contacts.map((item) => (
-          <li>
+          <li key={item._id}>
             <p>{item.name}</p>
             <p>{item.email}</p>
             <p>{item.phone}</p>
+            <button type="button" onClick={() => handleDelete(item._id)}>Delete</button>
           </li>
         ))}
       </ul>
