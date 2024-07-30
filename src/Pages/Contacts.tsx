@@ -5,7 +5,7 @@ import { AppDispatch, RootState } from "../redux/store";
 
 const Contacts = () => {
   const dispatch = useDispatch<AppDispatch>();
-  //   const contacts = useSelector((state: RootState) => state.contacts.items);
+  const contacts = useSelector((state: RootState) => state.contacts.items);
 
   useEffect(() => {
     dispatch(fetchContacts());
@@ -30,6 +30,15 @@ const Contacts = () => {
         <input type="text" name="phone" placeholder="phone" />
         <button type="submit">Add contact</button>
       </form>
+      <ul>
+        {contacts.map((item) => (
+          <li>
+            <p>{item.name}</p>
+            <p>{item.email}</p>
+            <p>{item.phone}</p>
+          </li>
+        ))}
+      </ul>
     </>
   );
 };
