@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/yellow-pages/static/js/main.94dd2978.js",
+    "main.js": "/yellow-pages/static/js/main.317a611d.js",
     "index.html": "/yellow-pages/index.html",
-    "main.94dd2978.js.map": "/yellow-pages/static/js/main.94dd2978.js.map"
+    "main.317a611d.js.map": "/yellow-pages/static/js/main.317a611d.js.map"
   },
   "entrypoints": [
-    "static/js/main.94dd2978.js"
+    "static/js/main.317a611d.js"
   ]
 }
