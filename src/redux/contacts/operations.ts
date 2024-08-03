@@ -7,6 +7,11 @@ interface ContactCredentials {
   phone: string;
 }
 
+interface EditCredentials {
+  contactId: string;
+  credentials: ContactCredentials;
+}
+
 export const fetchContacts = createAsyncThunk(
   "contacts/getAll",
   async (_, thunkAPI) => {
@@ -36,7 +41,19 @@ export const deleteContact = createAsyncThunk(
   async (contactId: string, thunkAPI) => {
     try {
       const response = await axios.delete(`/contacts/${contactId}`);
-      return {id: contactId}
+      return { id: contactId };
+    } catch (e: any) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
+
+export const editContact = createAsyncThunk(
+  "contacts/editContact",
+  async ({ contactId, credentials }: EditCredentials, thunkAPI) => {
+    try {
+      const response = await axios.put(`/contacts/${contactId}`, credentials);
+      return response.data;
     } catch (e: any) {
       return thunkAPI.rejectWithValue(e.message);
     }
