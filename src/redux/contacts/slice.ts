@@ -4,6 +4,7 @@ import {
   deleteContact,
   editContact,
   fetchContacts,
+  updateFavoriteContact,
 } from "./operations";
 
 interface Contact {
@@ -13,6 +14,8 @@ interface Contact {
   favorite?: boolean;
   _id: string;
 }
+
+type FavoriteContact = Pick<Contact, "favorite" | "_id">;
 
 interface ContactsState {
   items: Contact[];
@@ -98,6 +101,26 @@ const contactsSlice = createSlice({
         }
       )
       .addCase(editContact.rejected, (state, action: any) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      })
+      .addCase(updateFavoriteContact.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(
+        updateFavoriteContact.fulfilled,
+        (state, action: PayloadAction<FavoriteContact>) => {
+          state.isLoading = false;
+          state.error = "";
+          const contact = state.items.find(
+            (item) => item._id === action.payload._id
+          );
+          if (contact) {
+            contact.favorite = !contact.favorite
+          }
+        }
+      )
+      .addCase(updateFavoriteContact.rejected, (state, action: any) => {
         state.isLoading = false;
         state.error = action.payload;
       });

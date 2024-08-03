@@ -12,6 +12,11 @@ interface EditCredentials {
   credentials: ContactCredentials;
 }
 
+interface EditFavoriteContact {
+  contactId: string;
+  currentFavorite: boolean;
+}
+
 export const fetchContacts = createAsyncThunk(
   "contacts/getAll",
   async (_, thunkAPI) => {
@@ -53,6 +58,20 @@ export const editContact = createAsyncThunk(
   async ({ contactId, credentials }: EditCredentials, thunkAPI) => {
     try {
       const response = await axios.put(`/contacts/${contactId}`, credentials);
+      return response.data;
+    } catch (e: any) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
+
+export const updateFavoriteContact = createAsyncThunk(
+  "contacts/updateFavorite",
+  async ({ contactId, currentFavorite }: EditFavoriteContact, thunkAPI) => {
+    try {
+      const response = await axios.patch(`/contacts/${contactId}/favorite`, {
+        favorite: !currentFavorite,
+      });
       return response.data;
     } catch (e: any) {
       return thunkAPI.rejectWithValue(e.message);

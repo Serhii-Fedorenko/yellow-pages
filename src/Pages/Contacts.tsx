@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { idText, isTemplateExpression } from "typescript";
 import {
   addContact,
   deleteContact,
   editContact,
   fetchContacts,
+  updateFavoriteContact,
 } from "../redux/contacts/operations";
 import { AppDispatch, RootState } from "../redux/store";
 
@@ -52,6 +52,15 @@ const Contacts = () => {
 
   const handleEditClick = (contact: Contact) => {
     setCurrentContact(contact);
+  };
+
+  const handleFavoriteClick = (contact: Contact) => {
+    dispatch(
+      updateFavoriteContact({
+        contactId: contact._id,
+        currentFavorite: !contact.favorite,
+      })
+    );
   };
 
   return (
@@ -101,6 +110,9 @@ const Contacts = () => {
               }
             >
               Edit
+            </button>
+            <button type="button" onClick={() => handleFavoriteClick(item)}>
+              {item.favorite ? "favorite" : "unfavorite"}
             </button>
           </li>
         ))}
