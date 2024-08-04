@@ -1,25 +1,26 @@
 import { Suspense } from "react";
 import { useDispatch } from "react-redux";
-import { NavLink, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
 import { logout } from "../../redux/auth/operations";
 import { AppDispatch } from "../../redux/store";
+import { Container, Header,Link } from "./Layout.styled";
 
 const Layout = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { isLoggedIn } = useAuth();
   return (
-    <div>
-      <header>
+    <Container>
+      <Header>
         <nav>
-          <NavLink to="/">Home</NavLink>
+          <Link to="/">Home</Link>
 
-          {isLoggedIn && <NavLink to="/contacts">Contacts</NavLink>}
+          {isLoggedIn && <Link to="/contacts">Contacts</Link>}
 
           {!isLoggedIn && (
             <>
-              <NavLink to="/login">Log In</NavLink>
-              <NavLink to="/register">Sign In</NavLink>
+              <Link to="/login">Log In</Link>
+              <Link to="/register">Sign In</Link>
             </>
           )}
 
@@ -29,11 +30,11 @@ const Layout = () => {
             </button>
           )}
         </nav>
-      </header>
+      </Header>
       <Suspense>
         <Outlet />
       </Suspense>
-    </div>
+    </Container>
   );
 };
 
