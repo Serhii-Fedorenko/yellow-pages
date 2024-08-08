@@ -2,6 +2,7 @@ import { FormEvent } from "react";
 import { useDispatch } from "react-redux";
 import { register } from "../../redux/auth/operations";
 import { AppDispatch } from "../../redux/store";
+import { Button, Form, Input } from "./SignInPage.styled";
 
 const SignInPage = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -23,11 +24,11 @@ const SignInPage = () => {
   };
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <input type="email" name="email" />
-        <input type="password" name="password" />
-        <button type="submit">Sign In</button>
-      </form>
+      <Form onSubmit={handleSubmit}>
+        <Input type="email" name="email" placeholder="Enter your Email" />
+        <Input type="password" name="password" placeholder="Enter your Password"/>
+        <Button type="submit">Sign In</Button>
+      </Form>
     </div>
   );
 };
