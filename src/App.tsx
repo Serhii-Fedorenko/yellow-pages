@@ -11,6 +11,7 @@ import LogIn from "./Pages/LogIn";
 import SignIn from "./Pages/SignIn";
 import { refreshUser } from "./redux/auth/operations";
 import { AppDispatch } from "./redux/store";
+import './index.css'
 
 function App() {
   const dispatch = useDispatch<AppDispatch>();
