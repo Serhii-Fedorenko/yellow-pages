@@ -2,7 +2,11 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { addContact, editContact } from "../../redux/contacts/operations";
 import { AppDispatch } from "../../redux/store";
-import { CustomContactButton, CustomContactForm, CustomContactInput } from "./ContactForm.styled";
+import {
+  CustomContactButton,
+  CustomContactForm,
+  CustomContactInput,
+} from "./ContactForm.styled";
 
 interface Contact {
   name: string;
@@ -13,22 +17,26 @@ interface Contact {
 }
 
 interface ContactFormProps {
-    currentContact: Contact | null
+  currentContact: Contact | null;
+  onResetCurrentContact: () => void;
 }
 
-const ContactForm: React.FC<ContactFormProps> = ({currentContact}) => {
+const ContactForm: React.FC<ContactFormProps> = ({
+  currentContact,
+  onResetCurrentContact,
+}) => {
   const dispatch = useDispatch<AppDispatch>();
-  const [name, setName] = useState(currentContact?.name || '')
-  const [email, setEmail] = useState(currentContact?.email || '')
-  const [phone, setPhone] = useState(currentContact?.phone || '')
+  const [name, setName] = useState(currentContact?.name || "");
+  const [email, setEmail] = useState(currentContact?.email || "");
+  const [phone, setPhone] = useState(currentContact?.phone || "");
 
   useEffect(() => {
-    if(currentContact) {
-        setName(currentContact.name);
-        setEmail(currentContact.email);
-        setPhone(currentContact.phone)
+    if (currentContact) {
+      setName(currentContact.name);
+      setEmail(currentContact.email);
+      setPhone(currentContact.phone);
     }
-  },[currentContact])
+  }, [currentContact]);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -39,12 +47,13 @@ const ContactForm: React.FC<ContactFormProps> = ({currentContact}) => {
           credentials: { name, email, phone },
         })
       );
+      onResetCurrentContact();
     } else {
       dispatch(addContact({ name, email, phone }));
     }
-    setName('')
-    setEmail('')
-    setPhone('')
+    setName("");
+    setEmail("");
+    setPhone("");
   };
 
   return (

@@ -1,11 +1,3 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import {
-  deleteContact,
-  updateFavoriteContact,
-} from "../../redux/contacts/operations";
-import { AppDispatch } from "../../redux/store";
-
 interface Contact {
   name: string;
   email: string;
