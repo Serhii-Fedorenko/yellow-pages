@@ -67,7 +67,6 @@ const Contacts = () => {
 
   return (
     <>
-      <div>Contacts</div>
       <ContactForm currentContact={currentContact}/>
       <div>
         {contacts.map((item) => (

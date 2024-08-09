@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { addContact, editContact } from "../../redux/contacts/operations";
 import { AppDispatch } from "../../redux/store";
+import { CustomContactButton, CustomContactForm, CustomContactInput } from "./ContactForm.styled";
 
 interface Contact {
   name: string;
@@ -47,31 +48,32 @@ const ContactForm: React.FC<ContactFormProps> = ({currentContact}) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
+    <CustomContactForm onSubmit={handleSubmit}>
+      <CustomContactInput
         type="text"
         name="name"
+        placeholder="name"
         value={name}
-        onChange={(e) => setName(e.target.value)}
+        onChange={(e: any) => setName(e.target.value)}
       />
-      <input
+      <CustomContactInput
         type="text"
         name="email"
         placeholder="emial"
         value={email}
-        onChange={(e) => setEmail(e.target.value)}
+        onChange={(e: any) => setEmail(e.target.value)}
       />
-      <input
+      <CustomContactInput
         type="text"
         name="phone"
         placeholder="phone"
         value={phone}
-        onChange={(e) => setPhone(e.target.value)}
+        onChange={(e: any) => setPhone(e.target.value)}
       />
-      <button type="submit">
+      <CustomContactButton type="submit">
         {currentContact ? "Edit contact" : "Add contact"}
-      </button>
-    </form>
+      </CustomContactButton>
+    </CustomContactForm>
   );
 };
 
