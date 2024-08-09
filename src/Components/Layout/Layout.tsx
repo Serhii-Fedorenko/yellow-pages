@@ -4,6 +4,7 @@ import { Outlet } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
 import { logout } from "../../redux/auth/operations";
 import { AppDispatch } from "../../redux/store";
+import { Button } from "../SignInPage/SignInPage.styled";
 import { Container, Header,Link } from "./Layout.styled";
 
 const Layout = () => {
@@ -25,9 +26,9 @@ const Layout = () => {
           )}
 
           {isLoggedIn && (
-            <button type="button" onClick={() => dispatch(logout())}>
+            <Button type="button" onClick={() => dispatch(logout())}>
               Log out
-            </button>
+            </Button>
           )}
         </nav>
       </Header>
