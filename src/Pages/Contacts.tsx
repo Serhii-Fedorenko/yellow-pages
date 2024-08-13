@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ContactForm from "../Components/ContactForm/ContactForm";
-import ContactsList from "../Components/ContactsList/ContactsList";
+import Contact from "../Components/Contact/Contact";
 import {
   deleteContact,
   fetchContacts,
   updateFavoriteContact,
 } from "../redux/contacts/operations";
 import { AppDispatch, RootState } from "../redux/store";
+import { ContactsList } from "../Components/Contact/Contact.styled";
 
 interface Contact {
   name: string;
@@ -50,9 +51,9 @@ const Contacts = () => {
   return (
     <>
       <ContactForm currentContact={currentContact} onResetCurrentContact={handleResetCurrentContact}/>
-      <div>
+      <ContactsList>
         {contacts.map((item) => (
-          <ContactsList
+          <Contact
             key={item._id}
             contact={item}
             onDelete={handleDelete}
@@ -60,7 +61,7 @@ const Contacts = () => {
             onToggleFavorite={handleFavoriteClick}
           />
         ))}
-      </div>
+      </ContactsList>
     </>
   );
 };

@@ -39,3 +39,7 @@ a {
   color: inherit;
 }
 
+.class {
+  display: flex;
+  justify-content: space-between;
+}
