@@ -19,22 +19,38 @@ export const Header = styled.header`
   gap: 12px;
   padding: 8px 0;
   margin-bottom: 16px;
-  border-bottom: 1px solid black;
+`;
 
-  > nav {
-    display: flex;
-  }
+export const HeaderNavigation = styled.nav`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 30px;
 `;
 
 export const Link = styled(NavLink)`
-  padding: 8px 16px;
-  border-radius: 4px;
+  display: inline-block;
+  padding: 10px;
+  margin-right: 10px;
+  border-radius: 5px;
   text-decoration: none;
   color: black;
   font-weight: 500;
 
   &.active {
     color: white;
-    background-color: #FF9A00;
+    background-color: #ff9a00;
   }
 `;
+
+export const UserMenu = styled.div`
+  display: flex;
+`;
+
+export const UserAvatar = styled.img`
+width: 50px;  
+height: 50px;
+border-radius: 50%;
+margin-right: 10px;
+`

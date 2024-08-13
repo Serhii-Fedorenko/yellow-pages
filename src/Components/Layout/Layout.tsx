@@ -5,32 +5,40 @@ import { useAuth } from "../../hooks/useAuth";
 import { logout } from "../../redux/auth/operations";
 import { AppDispatch } from "../../redux/store";
 import { Button } from "../SignInPage/SignInPage.styled";
-import { Container, Header,Link } from "./Layout.styled";
+import { Container, Header, HeaderNavigation, Link, UserAvatar, UserMenu } from "./Layout.styled";
 
 const Layout = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn, user } = useAuth();
+  console.log(user.avatarURL);
   return (
     <Container>
       <Header>
-        <nav>
-          <Link to="/">Home</Link>
+        <HeaderNavigation>
+          <div>
+            <Link to="/">Home</Link>
 
-          {isLoggedIn && <Link to="/contacts">Contacts</Link>}
+            {isLoggedIn && <Link to="/contacts">Contacts</Link>}
 
-          {!isLoggedIn && (
-            <>
-              <Link to="/login">Log In</Link>
-              <Link to="/register">Sign In</Link>
-            </>
-          )}
+            {!isLoggedIn && (
+              <>
+                <Link to="/login">Log In</Link>
+                <Link to="/register">Sign In</Link>
+              </>
+            )}
+          </div>
 
-          {isLoggedIn && (
-            <Button type="button" onClick={() => dispatch(logout())}>
-              Log out
-            </Button>
-          )}
-        </nav>
+          <div>
+            {isLoggedIn && (
+              <UserMenu>
+              <UserAvatar src={user.avatarURL}/>
+                <Button type="button" onClick={() => dispatch(logout())}>
+                  Log out
+                </Button>
+              </UserMenu>
+            )}
+          </div>
+        </HeaderNavigation>
       </Header>
       <Suspense>
         <Outlet />
