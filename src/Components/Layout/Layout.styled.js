@@ -35,7 +35,7 @@ export const Link = styled(NavLink)`
   margin-right: 10px;
   border-radius: 5px;
   text-decoration: none;
-  color: black;
+  color: white;
   font-weight: 500;
 
   &.active {
@@ -53,4 +53,10 @@ width: 50px;
 height: 50px;
 border-radius: 50%;
 margin-right: 10px;
+`
+
+export const UserInfo = styled.div`
+margin-right: 10px;
+text-align: end;
+color: white;
 `

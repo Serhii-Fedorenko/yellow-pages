@@ -5,12 +5,11 @@ import { useAuth } from "../../hooks/useAuth";
 import { logout } from "../../redux/auth/operations";
 import { AppDispatch } from "../../redux/store";
 import { Button } from "../SignInPage/SignInPage.styled";
-import { Container, Header, HeaderNavigation, Link, UserAvatar, UserMenu } from "./Layout.styled";
+import { Container, Header, HeaderNavigation, Link, UserAvatar, UserInfo, UserMenu } from "./Layout.styled";
 
 const Layout = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { isLoggedIn, user } = useAuth();
-  console.log(user.avatarURL);
   return (
     <Container>
       <Header>
@@ -31,6 +30,10 @@ const Layout = () => {
           <div>
             {isLoggedIn && (
               <UserMenu>
+                <UserInfo>
+                  <p>{user.email}</p>
+                  <p>{user.subscription}</p>
+                </UserInfo>
               <UserAvatar src={user.avatarURL}/>
                 <Button type="button" onClick={() => dispatch(logout())}>
                   Log out

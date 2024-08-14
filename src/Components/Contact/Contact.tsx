@@ -4,6 +4,11 @@ import {
   ContactContainer,
   InfoContainer,
 } from "./Contact.styled";
+import {
+  FavoriteButton,
+  FilledStar,
+  UnfilledStar,
+} from "./FavoriteButton.styled";
 
 interface Contact {
   name: string;
@@ -34,15 +39,18 @@ const ContactsList: React.FC<ContactsListProps> = ({
         <p>{contact.phone}</p>
       </InfoContainer>
       <ButtonContainer>
-        <CustomContactButton type="button" onClick={() => onDelete(contact._id)}>
+        <CustomContactButton
+          type="button"
+          onClick={() => onDelete(contact._id)}
+        >
           Delete
         </CustomContactButton>
         <CustomContactButton type="button" onClick={() => onEdit(contact)}>
           Edit
         </CustomContactButton>
-        <CustomContactButton type="button" onClick={() => onToggleFavorite(contact)}>
-          {contact.favorite ? "favorite" : "unfavorite"}
-        </CustomContactButton>
+        <FavoriteButton type="button" data-favorite={contact.favorite? 1 : 0} onClick={() => onToggleFavorite(contact)}>
+          {contact.favorite ? <FilledStar /> : <UnfilledStar />}
+        </FavoriteButton>
       </ButtonContainer>
     </ContactContainer>
   );
