@@ -116,7 +116,7 @@ const contactsSlice = createSlice({
             (item) => item._id === action.payload._id
           );
           if (contact) {
-            contact.favorite = !contact.favorite
+            contact.favorite = action.payload.favorite
           }
         }
       )

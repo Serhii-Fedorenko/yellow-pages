@@ -70,7 +70,7 @@ export const updateFavoriteContact = createAsyncThunk(
   async ({ contactId, currentFavorite }: EditFavoriteContact, thunkAPI) => {
     try {
       const response = await axios.patch(`/contacts/${contactId}/favorite`, {
-        favorite: !currentFavorite,
+        favorite: currentFavorite,
       });
       return response.data;
     } catch (e: any) {

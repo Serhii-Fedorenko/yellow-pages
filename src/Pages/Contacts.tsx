@@ -41,16 +41,19 @@ const Contacts = () => {
         contactId: contact._id,
         currentFavorite: !contact.favorite,
       })
-    );
+    )
   };
 
   const handleResetCurrentContact = () => {
-    setCurrentContact(null)
-  }
+    setCurrentContact(null);
+  };
 
   return (
     <>
-      <ContactForm currentContact={currentContact} onResetCurrentContact={handleResetCurrentContact}/>
+      <ContactForm
+        currentContact={currentContact}
+        onResetCurrentContact={handleResetCurrentContact}
+      />
       <ContactsList>
         {contacts.map((item) => (
           <Contact

@@ -48,7 +48,11 @@ const ContactsList: React.FC<ContactsListProps> = ({
         <CustomContactButton type="button" onClick={() => onEdit(contact)}>
           Edit
         </CustomContactButton>
-        <FavoriteButton type="button" data-favorite={contact.favorite? 1 : 0} onClick={() => onToggleFavorite(contact)}>
+        <FavoriteButton
+          type="button"
+          data-favorite={contact.favorite ? 1 : 0}
+          onClick={() => onToggleFavorite(contact)}
+        >
           {contact.favorite ? <FilledStar /> : <UnfilledStar />}
         </FavoriteButton>
       </ButtonContainer>
