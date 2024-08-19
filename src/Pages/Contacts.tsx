@@ -9,6 +9,8 @@ import {
 } from "../redux/contacts/operations";
 import { AppDispatch, RootState } from "../redux/store";
 import { ContactsList } from "../Components/Contact/Contact.styled";
+import { selectIsModalOpen } from "../redux/modal/selectors";
+import Modal from "../Components/Modal/Modal";
 
 interface Contact {
   name: string;
@@ -22,6 +24,7 @@ const Contacts = () => {
   const dispatch = useDispatch<AppDispatch>();
   const contacts = useSelector((state: RootState) => state.contacts.items);
   const [currentContact, setCurrentContact] = useState<Contact | null>(null);
+  const isModalOpen = useSelector(selectIsModalOpen);
 
   useEffect(() => {
     dispatch(fetchContacts());
@@ -41,7 +44,7 @@ const Contacts = () => {
         contactId: contact._id,
         currentFavorite: !contact.favorite,
       })
-    )
+    );
   };
 
   const handleResetCurrentContact = () => {
@@ -65,6 +68,11 @@ const Contacts = () => {
           />
         ))}
       </ContactsList>
+      {isModalOpen && (
+        <Modal>
+          <h1>Hello</h1>
+        </Modal>
+      )}
     </>
   );
 };
