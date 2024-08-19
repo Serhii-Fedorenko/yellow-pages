@@ -46,6 +46,7 @@ export const Link = styled(NavLink)`
 
 export const UserMenu = styled.div`
   display: flex;
+  position: relative;
 `;
 
 export const UserAvatar = styled.img`

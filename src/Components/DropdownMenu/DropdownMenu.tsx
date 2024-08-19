@@ -1,11 +1,12 @@
 import { forwardRef } from "react";
+import { DropdownItem, DropdownList } from "./DropdownMenu.styled";
 
 const DropdownMenu = forwardRef<HTMLUListElement>((props, ref) => {
   return (
-    <ul ref={ref}>
-      <li>Change avatar</li>
-      <li>Change subscription</li>
-    </ul>
+    <DropdownList ref={ref}>
+      <DropdownItem>Change avatar</DropdownItem>
+      <DropdownItem>Change subscription</DropdownItem>
+    </DropdownList>
   );
 });
 
