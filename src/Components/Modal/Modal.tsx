@@ -3,7 +3,12 @@ import { createPortal } from "react-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { selectIsModalOpen } from "../../redux/modal/selectors";
 import { toggleModal } from "../../redux/modal/slice";
-import { ModalBackdrop, ModalContent } from "./Modal.styled";
+import {
+  CloseButton,
+  CloseIcon,
+  ModalBackdrop,
+  ModalContent,
+} from "./Modal.styled";
 
 const modalRoot = document.getElementById("modal-root");
 
@@ -25,13 +30,28 @@ const Modal: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     };
   }, [dispatch, isModalOpen]);
 
+  const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (e.target === e.currentTarget) {
+      dispatch(toggleModal());
+    }
+  };
+
+  const handleCloseButtonClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    dispatch(toggleModal())
+  }
+
   if (!modalRoot) {
     return null;
   }
 
   return createPortal(
-    <ModalBackdrop>
-      <ModalContent>{children}</ModalContent>
+    <ModalBackdrop onClick={handleBackdropClick}>
+      <ModalContent>
+        <CloseButton onClick={handleCloseButtonClick}>
+          <CloseIcon />
+        </CloseButton>
+        {children}
+      </ModalContent>
     </ModalBackdrop>,
     modalRoot
   );

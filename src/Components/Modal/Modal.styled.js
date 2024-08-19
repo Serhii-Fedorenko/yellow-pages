@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { AiOutlineClose } from "react-icons/ai";
 
 export const ModalBackdrop = styled.div`
   position: fixed;
@@ -25,4 +26,22 @@ export const ModalContent = styled.div`
   background-color: #fff;
   box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
     0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+`;
+
+export const CloseButton = styled.button`
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+
+  &:hover {
+    transform: scale(1.2);
+  }
+`;
+
+export const CloseIcon = styled(AiOutlineClose)`
+  font-size: 24px;
 `;
