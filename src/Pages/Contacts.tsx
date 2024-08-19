@@ -9,7 +9,10 @@ import {
 } from "../redux/contacts/operations";
 import { AppDispatch, RootState } from "../redux/store";
 import { ContactsList } from "../Components/Contact/Contact.styled";
-import { selectIsModalOpen } from "../redux/modal/selectors";
+import {
+  selectIsModalOpen,
+  selectModalContent,
+} from "../redux/modal/selectors";
 import Modal from "../Components/Modal/Modal";
 
 interface Contact {
@@ -25,6 +28,7 @@ const Contacts = () => {
   const contacts = useSelector((state: RootState) => state.contacts.items);
   const [currentContact, setCurrentContact] = useState<Contact | null>(null);
   const isModalOpen = useSelector(selectIsModalOpen);
+  const modalContent = useSelector(selectModalContent);
 
   useEffect(() => {
     dispatch(fetchContacts());
@@ -70,7 +74,11 @@ const Contacts = () => {
       </ContactsList>
       {isModalOpen && (
         <Modal>
-          <h1>Hello</h1>
+          {modalContent === "avatar" ? (
+            <h1>change avatar</h1>
+          ) : (
+            <h1>change subscription</h1>
+          )}
         </Modal>
       )}
     </>

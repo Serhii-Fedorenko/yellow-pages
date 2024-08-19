@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { createPortal } from "react-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { selectIsModalOpen } from "../../redux/modal/selectors";
-import { toggleModal } from "../../redux/modal/slice";
+import { setModalContent, toggleModal } from "../../redux/modal/slice";
 import {
   CloseButton,
   CloseIcon,
@@ -20,6 +20,7 @@ const Modal: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const handleKeyDown = (e: WindowEventMap["keydown"]) => {
       if (isModalOpen && e.code === "Escape") {
         dispatch(toggleModal());
+        dispatch(setModalContent(''))
       }
     };
 
@@ -33,11 +34,13 @@ const Modal: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.target === e.currentTarget) {
       dispatch(toggleModal());
+      dispatch(setModalContent(''))
     }
   };
 
   const handleCloseButtonClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     dispatch(toggleModal())
+    dispatch(setModalContent(''))
   }
 
   if (!modalRoot) {
