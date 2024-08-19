@@ -1,10 +1,13 @@
 {
   "files": {
-    "main.js": "/yellow-pages/static/js/main.317a611d.js",
+    "main.css": "/yellow-pages/static/css/main.5c0c759c.css",
+    "main.js": "/yellow-pages/static/js/main.57353956.js",
     "index.html": "/yellow-pages/index.html",
-    "main.317a611d.js.map": "/yellow-pages/static/js/main.317a611d.js.map"
+    "main.5c0c759c.css.map": "/yellow-pages/static/css/main.5c0c759c.css.map",
+    "main.57353956.js.map": "/yellow-pages/static/js/main.57353956.js.map"
   },
   "entrypoints": [
-    "static/js/main.317a611d.js"
+    "static/css/main.5c0c759c.css",
+    "static/js/main.57353956.js"
   ]
 }
