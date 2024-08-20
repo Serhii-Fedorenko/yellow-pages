@@ -14,6 +14,8 @@ import {
   selectModalContent,
 } from "../redux/modal/selectors";
 import Modal from "../Components/Modal/Modal";
+import ChangeSubscription from "../Components/ChangeSubscription/ChangeSubscription";
+import ChangeAvatar from "../Components/ChangeAvatar/ChangeAvatar";
 
 interface Contact {
   name: string;
@@ -75,9 +77,9 @@ const Contacts = () => {
       {isModalOpen && (
         <Modal>
           {modalContent === "avatar" ? (
-            <h1>change avatar</h1>
+            <ChangeAvatar />
           ) : (
-            <h1>change subscription</h1>
+            <ChangeSubscription />
           )}
         </Modal>
       )}
