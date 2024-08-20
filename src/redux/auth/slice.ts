@@ -1,5 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { login, logout, refreshUser, register } from "./operations";
+import {
+  login,
+  logout,
+  refreshUser,
+  register,
+  updateSubscription,
+} from "./operations";
 
 interface User {
   email: string;
@@ -65,6 +71,9 @@ const authSlice = createSlice({
       )
       .addCase(refreshUser.rejected, (state) => {
         state.isRefreshing = false;
+      })
+      .addCase(updateSubscription.fulfilled, (state, action) => {
+        state.user.subscription = action.payload.user.subscription;
       });
   },
 });

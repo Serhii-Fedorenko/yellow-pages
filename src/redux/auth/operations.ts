@@ -69,3 +69,17 @@ export const refreshUser = createAsyncThunk(
     }
   }
 );
+
+export const updateSubscription = createAsyncThunk(
+  "auth/updateSubscription",
+  async (subscription: string, thunkAPI) => {
+    try {
+      const response = await axios.patch("/users/subscription", {
+        subscription,
+      });
+      return response.data;
+    } catch (e: any) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
