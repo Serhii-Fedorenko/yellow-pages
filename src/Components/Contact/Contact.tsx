@@ -1,11 +1,14 @@
-import { CustomContactButton } from "../ContactForm/ContactForm.styled";
 import {
   ButtonContainer,
+  ContactButton,
   ContactContainer,
+  DeleteButton,
+  EditButton,
   InfoContainer,
 } from "./Contact.styled";
 import {
   FavoriteButton,
+  FavoriteButtonContainer,
   FilledStar,
   UnfilledStar,
 } from "./FavoriteButton.styled";
@@ -39,22 +42,21 @@ const ContactsList: React.FC<ContactsListProps> = ({
         <p>{contact.phone}</p>
       </InfoContainer>
       <ButtonContainer>
-        <CustomContactButton
-          type="button"
-          onClick={() => onDelete(contact._id)}
-        >
-          Delete
-        </CustomContactButton>
-        <CustomContactButton type="button" onClick={() => onEdit(contact)}>
-          Edit
-        </CustomContactButton>
-        <FavoriteButton
-          type="button"
-          data-favorite={contact.favorite ? 1 : 0}
-          onClick={() => onToggleFavorite(contact)}
-        >
-          {contact.favorite ? <FilledStar /> : <UnfilledStar />}
-        </FavoriteButton>
+        <ContactButton type="button" onClick={() => onDelete(contact._id)}>
+          <DeleteButton />
+        </ContactButton>
+        <ContactButton type="button" onClick={() => onEdit(contact)}>
+          <EditButton />
+        </ContactButton>
+        <FavoriteButtonContainer>
+          <FavoriteButton
+            type="button"
+            data-favorite={contact.favorite ? 1 : 0}
+            onClick={() => onToggleFavorite(contact)}
+          >
+            {contact.favorite ? <FilledStar /> : <UnfilledStar />}
+          </FavoriteButton>
+        </FavoriteButtonContainer>
       </ButtonContainer>
     </ContactContainer>
   );

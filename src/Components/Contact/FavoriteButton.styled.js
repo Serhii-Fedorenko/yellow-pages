@@ -14,6 +14,13 @@ const starAnimation = keyframes`
   }
 `;
 
+export const FavoriteButtonContainer = styled.div`
+  position: absolute;
+  top: 50%;
+  left: -30px;
+  transform: translate(-50%, -50%);
+`;
+
 export const FavoriteButton = styled.button`
   background: none;
   border: none;

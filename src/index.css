@@ -38,8 +38,3 @@ a {
   text-decoration: none;
   color: inherit;
 }
-
-.class {
-  display: flex;
-  justify-content: space-between;
-}
