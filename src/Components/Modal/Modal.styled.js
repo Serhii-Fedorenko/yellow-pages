@@ -21,7 +21,7 @@ export const ModalContent = styled.div`
   justify-content: center;
   height: fit-content;
   width: fit-content;
-  padding: 32px;
+  padding: 100px  30px;
   border-radius: 5px;
   background-color: #fff;
   box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),

@@ -1,10 +1,18 @@
-import { FormEvent } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 import { useDispatch } from "react-redux";
 import { updateAvatar } from "../../redux/auth/operations";
 import { AppDispatch } from "../../redux/store";
+import { Button } from "../SignInPage/SignInPage.styled";
+import { AvatarForm, FileName, StyledInput } from "./ChangeAvatar.styled";
 
 const ChangeAvatar = () => {
   const dispatch = useDispatch<AppDispatch>();
+  const [fileName, setFileName] = useState("");
+
+  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    setFileName(file ? file.name : "file not found");
+  };
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -18,18 +26,23 @@ const ChangeAvatar = () => {
   };
 
   return (
-    <form
+    <AvatarForm
       action=""
       method="patch"
       encType="multipart/form-data"
       onSubmit={handleSubmit}
     >
-      <label>
-        Upload new avatar:
-        <input type="file" name="avatar" accept="image/*" />
-      </label>
-      <button type="submit">Upload</button>
-    </form>
+      <StyledInput
+        type="file"
+        id="avatar"
+        name="avatar"
+        accept="image/*"
+        onChange={handleFileChange}
+      />
+      <label htmlFor="avatar">Upload new avatar:</label>
+      <FileName>{fileName}</FileName>
+      <Button type="submit">Upload</Button>
+    </AvatarForm>
   );
 };
 
