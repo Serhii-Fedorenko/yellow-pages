@@ -3,6 +3,13 @@ import { useDispatch } from "react-redux";
 import { updateSubscription } from "../../redux/auth/operations";
 import { toggleModal } from "../../redux/modal/slice";
 import { AppDispatch } from "../../redux/store";
+import { Button } from "../SignInPage/SignInPage.styled";
+import {
+  RadioInput,
+  RadioLabel,
+  SubscriptionForm,
+  SubscriptionLabel,
+} from "./ChangeSubscription.styled";
 
 const ChangeSubscription = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -19,21 +26,23 @@ const ChangeSubscription = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
+    <SubscriptionForm onSubmit={handleSubmit}>
+      <SubscriptionLabel>
         Chose your plan
-        <label>
-          <input type="radio" name="subscription" value="starter" /> Starter
-        </label>
-        <label>
-          <input type="radio" name="subscription" value="business" /> Business
-        </label>
-        <label>
-          <input type="radio" name="subscription" value="pro" /> Pro
-        </label>
-      </label>
-      <button type="submit">Change plan</button>
-    </form>
+        <RadioLabel>
+          <RadioInput type="radio" name="subscription" value="starter" />{" "}
+          Starter
+        </RadioLabel>
+        <RadioLabel>
+          <RadioInput type="radio" name="subscription" value="business" />{" "}
+          Business
+        </RadioLabel>
+        <RadioLabel>
+          <RadioInput type="radio" name="subscription" value="pro" /> Pro
+        </RadioLabel>
+      </SubscriptionLabel>
+      <Button type="submit">Change plan</Button>
+    </SubscriptionForm>
   );
 };
 
