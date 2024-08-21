@@ -4,6 +4,7 @@ import {
   logout,
   refreshUser,
   register,
+  updateAvatar,
   updateSubscription,
 } from "./operations";
 
@@ -74,6 +75,9 @@ const authSlice = createSlice({
       })
       .addCase(updateSubscription.fulfilled, (state, action) => {
         state.user.subscription = action.payload.user.subscription;
+      })
+      .addCase(updateAvatar.fulfilled, (state, action) => {
+        state.user.avatarURL = action.payload.avatarURL;
       });
   },
 });
