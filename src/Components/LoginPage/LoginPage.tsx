@@ -1,11 +1,14 @@
+import Notiflix from "notiflix";
 import { FormEvent } from "react";
 import { useDispatch } from "react-redux";
+import { useAuth } from "../../hooks/useAuth";
 import { login } from "../../redux/auth/operations";
 import { AppDispatch } from "../../redux/store";
 import { Button, Form, Input } from "../SignInPage/SignInPage.styled";
 
 const LoginPage = () => {
   const dispatch = useDispatch<AppDispatch>();
+  const { error } = useAuth();
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -24,8 +27,13 @@ const LoginPage = () => {
   };
   return (
     <Form onSubmit={handleSubmit}>
-      <Input type="email" name="email" placeholder="Enter your Email"/>
-      <Input type="password" name="password" placeholder="Enter your Password"/>
+      <>{error && Notiflix.Notify.failure("Incorrect username or password")}</>
+      <Input type="email" name="email" placeholder="Enter your Email" />
+      <Input
+        type="password"
+        name="password"
+        placeholder="Enter your Password"
+      />
       <Button type="submit">Log In</Button>
     </Form>
   );

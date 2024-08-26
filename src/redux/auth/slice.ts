@@ -19,6 +19,7 @@ export interface UserState {
   token: string;
   isLoggedIn: boolean;
   isRefreshing: boolean;
+  error: string;
 }
 
 interface RegisterPayload {
@@ -31,6 +32,7 @@ const initialState: UserState = {
   token: "",
   isLoggedIn: false,
   isRefreshing: false,
+  error: "",
 };
 
 const authSlice = createSlice({
@@ -46,14 +48,21 @@ const authSlice = createSlice({
           state.user = action.payload.user;
         }
       )
+      .addCase(login.pending, (state) => {
+        state.error = "";
+      })
       .addCase(
         login.fulfilled,
         (state, action: PayloadAction<RegisterPayload>) => {
           state.user = action.payload.user;
           state.token = action.payload.token;
           state.isLoggedIn = true;
+          state.error = "";
         }
       )
+      .addCase(login.rejected, (state, action: any) => {
+        state.error = action.payload;
+      })
       .addCase(logout.fulfilled, (state) => {
         state.user = { email: "", subscription: "", avatarURL: "" };
         state.token = "";
