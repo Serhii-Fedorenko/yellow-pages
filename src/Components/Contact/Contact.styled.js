@@ -4,6 +4,7 @@ import { MdEdit } from "react-icons/md";
 
 export const ContactsList = styled.ul`
   padding: 20px 200px;
+  margin-top: 80px;
 `;
 
 export const ContactContainer = styled.li`
@@ -41,6 +42,6 @@ export const ContactButton = styled.button`
   margin-right: 20px;
 
   &:hover {
-    transform: scale(1.2)
+    transform: scale(1.2);
   }
 `;

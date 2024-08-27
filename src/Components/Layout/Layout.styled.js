@@ -10,6 +10,7 @@ export const Container = styled.div`
 export const Header = styled.header`
   display: flex;
   position: sticky;
+  z-index: 999;
   right: 0;
   left: 0;
   top: 0;
@@ -18,7 +19,6 @@ export const Header = styled.header`
   background-color: #808836;
   gap: 12px;
   padding: 8px 0;
-  margin-bottom: 16px;
 `;
 
 export const HeaderNavigation = styled.nav`

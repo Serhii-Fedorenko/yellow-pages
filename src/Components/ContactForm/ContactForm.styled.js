@@ -1,14 +1,17 @@
 import styled from "styled-components";
 
 export const CustomContactForm = styled.form`
-  display: flex; 
+  position: fixed;
+  display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   width: 100%;
   margin: 0 auto;
-  padding: 10px;
+  padding: 20px 10px;
   border-radius: 5px;
+  background-color: #ffffff;
+  z-index: 999;
 `;
 
 export const CustomContactInput = styled.input`
@@ -22,11 +25,11 @@ export const CustomContactButton = styled.button`
   padding: 10px;
   border: none;
   border-radius: 5px;
-  background-color: #FF9A00;
+  background-color: #ff9a00;
   color: #fff;
   cursor: pointer;
 
   &:hover {
-    background-color: #D10363;
+    background-color: #d10363;
   }
 `;
