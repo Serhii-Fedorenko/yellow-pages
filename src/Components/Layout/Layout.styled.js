@@ -10,7 +10,6 @@ export const Container = styled.div`
 export const Header = styled.header`
   display: flex;
   position: sticky;
-  z-index: 999;
   right: 0;
   left: 0;
   top: 0;

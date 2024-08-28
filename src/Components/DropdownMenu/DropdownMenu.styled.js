@@ -8,6 +8,7 @@ export const DropdownList = styled.ul`
   outline: 1px solid black;
   list-style: none;
   background-color: #ff9a00;
+  z-index: 9999;
 `;
 
 export const DropdownItem = styled.li`

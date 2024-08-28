@@ -11,7 +11,7 @@ export const CustomContactForm = styled.form`
   padding: 20px 10px;
   border-radius: 5px;
   background-color: #ffffff;
-  z-index: 999;
+  z-index: -100;
 `;
 
 export const CustomContactInput = styled.input`

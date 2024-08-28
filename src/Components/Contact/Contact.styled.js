@@ -3,6 +3,8 @@ import { MdDeleteForever } from "react-icons/md";
 import { MdEdit } from "react-icons/md";
 
 export const ContactsList = styled.ul`
+  position: relative;
+  z-index: -200;
   padding: 20px 200px;
   margin-top: 80px;
 `;
